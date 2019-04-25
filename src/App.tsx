@@ -3,11 +3,11 @@ import "./App.css";
 
 import axios from "axios";
 import { Button } from "./component/button";
-import { UsetList } from "./component/usersList";
+import { UserList } from "./component/usersList";
 
 // import o from "rxjs/Rx";
 
-class App extends React.Component<any, object> {
+class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.AddUsers = this.AddUsers.bind(this);
@@ -15,7 +15,7 @@ class App extends React.Component<any, object> {
   }
   public async AddUsers() {
     try {
-      const data: any = await axios.get("/jsonplaceholder.typicode.com/users");
+      const data: any = await axios.get("https://jsonplaceholder.typicode.com/users");
       this.setState({ usersList: data });
     } catch (error) {
       alert(error);
@@ -27,7 +27,7 @@ class App extends React.Component<any, object> {
     return (
       <div className="App">
         <Button name="Add users" addSchemas={this.AddUsers} />
-        <UsetList users={usersList} />
+        {usersList?<UserList users={usersList} />:null}
       </div>
     );
   }
